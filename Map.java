@@ -1,3 +1,4 @@
+package proj731;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -5,19 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Record_Reader {
-	//class pour diviser l'input en morceaux de taille fixe pour chaque mappeur
+public class Map {
 	
 	private String fName;
 	
 
-	public Record_Reader(String name) {
+	public Map(String name) {
 		this.fName = name;
 	}
 	
-	public ArrayList<HashMap<String, Integer>> split(){
+	public ArrayList<HashMap<String, Integer>> map(){
 		//method which reads the file and returns a HashMap<word,key>
-		ArrayList<HashMap<String, Integer>> split=new ArrayList<HashMap<String, Integer>>();
+		ArrayList<HashMap<String, Integer>> element=new ArrayList<HashMap<String, Integer>>();
 		try {
 			File file=new File(fName);
 			// Creating the File Reader object
@@ -32,7 +32,7 @@ public class Record_Reader {
 				for (int i = 0; i < words.length; i++) {
 					HashMap<String, Integer> word=new HashMap<String, Integer>();
 					word.put(words[i],1);
-					split.add(word);
+					element.add(word);
 				}
 			}
 			fr.close();  
@@ -41,7 +41,7 @@ public class Record_Reader {
 			System.out.println("An error occurred.");
 		    e.printStackTrace();
 	    }
-		return split;
+		return element;
 	}
 	}
 

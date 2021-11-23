@@ -1,15 +1,18 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.lang.Thread;
 
-public class Map {
+public class Map extends Thread{
 	
 	private ArrayList<String> split;
 	private int etat;
+	private ArrayList<String> text;
 
 	public Map(ArrayList<String> s) {
 		this.split = s;
 		this.etat = 0;
+		this.text = new ArrayList<String>();
 	}
 	
 	public HashMap<String, Integer> map(){
@@ -23,6 +26,10 @@ public class Map {
 			}
 		}
 		return element;
+	}
+	
+	public void addText(String nom) {
+		this.text.add(nom);
 	}
 	
 	public void status(String state) {

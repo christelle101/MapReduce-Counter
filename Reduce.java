@@ -1,8 +1,5 @@
-package proj731;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class Reduce {
 	public ArrayList<ArrayList<HashMap<String, Integer>>> split =new ArrayList<ArrayList<HashMap<String, Integer>>>();
@@ -14,7 +11,7 @@ public class Reduce {
 		this.split = split;
 	}
 
-	public /*ArrayList<HashMap<String, Integer>>*/ void reduce() {
+	public ArrayList<HashMap<String, Integer>> reduce() {
 		//list of hashmap<word, occurency>
 		ArrayList<HashMap<String, Integer>> map = new ArrayList<HashMap<String, Integer>>();
 		//liste stockant les cles sous format string
@@ -26,8 +23,8 @@ public class Reduce {
 					if (!words.contains(split.get(i).get(j).keySet().toString())){
 						words.add(split.get(i).get(j).keySet().toString());
 						map.add(split.get(i).get(j));
-						System.out.println("map "+map);
-						System.out.println(words.contains(split.get(i).get(j).keySet()));
+						//System.out.println("map "+map);
+						//System.out.println(words.contains(split.get(i).get(j).keySet()));
 					}
 					
 					//si on a deja rencontre ce mot on cherche dans quel hashmap de map c'est 
@@ -37,14 +34,14 @@ public class Reduce {
 							String keySplit=(String) split.get(i).get(j).keySet().toArray()[0];
 							String keyMap=(String) map.get(l).keySet().toArray()[0];
 							
-							System.out.println("l "+l +" "+ map.get(l));
+							//System.out.println("l "+l +" "+ map.get(l));
 							
 							if (keySplit.equals(keyMap)) {
-								System.out.println(map.get(l).keySet().toArray()[0]);
+								//System.out.println(map.get(l).keySet().toArray()[0]);
 								map.get(l).put(keyMap.toString(), map.get(l).get(keyMap) + 1); 
-								System.out.println(map);
+								//System.out.println(map);
 								} 
-					}
+						}
 					
 						
 				
@@ -52,6 +49,7 @@ public class Reduce {
 					}
 				}
 			}
+		return(map);
 		}
 	}
 

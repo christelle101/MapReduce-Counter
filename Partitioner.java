@@ -1,3 +1,5 @@
+
+
 import java.io.*;
 import java.lang.Thread;
 import java.util.*;
@@ -47,20 +49,35 @@ public class Partitioner extends Thread{
 		return reducers;
 	}*/
 	
-	public void defineMap() {
+	/*public void defineMap() {
 		for (int n = 0; n<this.mappers.size() + 1; n++) {
-			this.mappers.get(n%this.mappers.size()).addText(this.noms.get(n));
+			this.mappers.get(n%this.mappers.size()).addSplit(this.noms.get(n));
 		}
-	}
-	public void startMap() {
-		for (Map map : this.mappers) {
-			map.start(); //m�thode pour demarrer un thread
-		}
-	}
-	
-	/*private void resetMapper() {
-		
 	}*/
 	
+	public void startMap() {
+		for (Map map : this.mappers) {
+			map.start(); //méthode pour demarrer un thread
+		}
+	}
+	
+	private void resetMapper() {
+		for (Map map : this.mappers) {
+			map.status("reinitialisé");
+			map.resetSplit();
+			map.resetMap();
+		}
+	}
+	
+	public ArrayList<ArrayList<HashMap<String, Integer>>> launch() {
+		ArrayList<ArrayList<HashMap<String, Integer>>> mapResult =new ArrayList<ArrayList<HashMap<String, Integer>>>();
+		this.startMap();
+		System.out.println("maps start running");
+		for (Map map : this.mappers) {
+			mapResult.add(map.map()); 
+		}
+		resetMapper();
+		return mapResult;
+	}
 	
 }

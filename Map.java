@@ -15,14 +15,16 @@ public class Map extends Thread{
 		this.text = new ArrayList<String>();
 	}
 	
-	public HashMap<String, Integer> map(){
+	public ArrayList<HashMap<String, Integer>> map(){
 		//method which reads the file and returns a HashMap<word,key>
-		HashMap<String, Integer> element=new HashMap<String, Integer>();
+		ArrayList<HashMap<String, Integer>> element=new ArrayList<HashMap<String, Integer>>();
 		for(int i = 0; i < split.size(); i++){
 			//list of word
 			String[] words = split.get(i).split(" ");
 			for (int j = 0; j < words.length; j++) {
-				element.put(words[j],1);
+				HashMap<String, Integer> word=new HashMap<String, Integer>();
+				word.put(words[j],1);
+				element.add(word);
 			}
 		}
 		return element;

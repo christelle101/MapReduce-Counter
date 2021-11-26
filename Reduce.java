@@ -1,16 +1,23 @@
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.lang.Thread;
 
-public class Reduce {
+public class Reduce extends Thread {
 	public ArrayList<ArrayList<HashMap<String, Integer>>> list =new ArrayList<ArrayList<HashMap<String, Integer>>>();
 	/*//0 correspond a la partie des mots de a-m et 1 de n-z
 	public int part_number;*/
+	private ArrayList<HashMap<String,Integer>> hMaps;
+	public HashMap<String,Integer> reducer ;
+	private int status;
 	
 	public Reduce(ArrayList<ArrayList<HashMap<String, Integer>>> split) {
 		super();
 		this.list = split;
 	}
+
+	//public Reduce(ArrayList<ArrayList<HashMap<String, Integer>>> mapResult) {
+		// TODO Auto-generated constructor stub
+	//}
 
 	public ArrayList<HashMap<String, Integer>> reduce() {
 		//list of hashmap<word, occurency>
@@ -52,6 +59,30 @@ public class Reduce {
 			}
 		return(map);
 		}
+
+	public void addHashMap(HashMap<String, Integer> hashMap) {
+		// TODO Auto-generated method stub
+		this.hMaps.add(hashMap);
+	}
+	
+	public void resetHashMaps(){
+		this.hMaps=new ArrayList<HashMap<String, Integer>>();
+	}
+	
+	public void resetReducer(){
+		this.reducer = new HashMap<String, Integer>();
+	}
+	
+	public void etat(String state) {
+		if (state == "completed") {
+			this.status = 1;
+		}
+		else {
+			this.status = 0;
+		}
+	}
+	
+	
 	}
 
 	

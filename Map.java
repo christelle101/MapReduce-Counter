@@ -7,12 +7,18 @@ public class Map extends Thread{
 	
 	private ArrayList<String> split;
 	private int etat;
-	private ArrayList<String> text;
+	private HashMap<String, Integer> map;
+
+	public int getEtat() {
+		return etat;
+	}
+
 
 	public Map(ArrayList<String> s) {
+		//ArrayList<String> s = null;
 		this.split = s;
 		this.etat = 0;
-		this.text = new ArrayList<String>();
+		//this.s = new ArrayList<String>();
 	}
 	
 	public ArrayList<HashMap<String, Integer>> map(){
@@ -30,8 +36,8 @@ public class Map extends Thread{
 		return element;
 	}
 	
-	public void addText(String nom) {
-		this.text.add(nom);
+	public void addSplit(String nom) {
+		this.split.add(nom);
 	}
 	
 	public void status(String state) {
@@ -43,7 +49,18 @@ public class Map extends Thread{
 		}
 	}
 	
+	public void resetMap(){
+		this.map = new HashMap<String, Integer>();
+	}
+	
+	public void resetSplit(){
+		this.split = new ArrayList<String>();
+	}
+
+	
 
 }
+
+
 
 

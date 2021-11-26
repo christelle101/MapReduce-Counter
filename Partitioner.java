@@ -1,5 +1,3 @@
-
-
 import java.io.*;
 import java.lang.Thread;
 import java.util.*;
@@ -14,11 +12,11 @@ public class Partitioner extends Thread{
 	public ArrayList<String> noms;
 	public String dossier;
 	ArrayList<Map> mappers = new ArrayList<>();
-	//ArrayList<Reduce> reducer = new ArrayList<>();
+	ArrayList<Reduce> reducers = new ArrayList<>();
 	
 	public Partitioner() {
 		this.mappers = mappers;
-		//this.reducer = reducer;
+		this.reducers = reducers;
 		this.noms = new ArrayList<String>();
 		this.hashM = new ArrayList<HashMap<String, Integer>>();
 		this.ultimate = new HashMap<String, Integer>();
@@ -49,25 +47,44 @@ public class Partitioner extends Thread{
 		return reducers;
 	}*/
 	
-	/*public void defineMap() {
+	private void defineMap() {
 		for (int n = 0; n<this.mappers.size() + 1; n++) {
 			this.mappers.get(n%this.mappers.size()).addSplit(this.noms.get(n));
 		}
-	}*/
-	
+	}
 	public void startMap() {
 		for (Map map : this.mappers) {
-			map.start(); //mÃ©thode pour demarrer un thread
+			map.start(); //méthode pour demarrer un thread
 		}
 	}
 	
 	private void resetMapper() {
 		for (Map map : this.mappers) {
-			map.status("reinitialisÃ©");
+			map.status("reinitialisé");
 			map.resetSplit();
 			map.resetMap();
 		}
 	}
+	
+	private void defineReduce() {
+		for(int i=0;i<this.hashM.size();i++){
+            this.reducers.get(i%this.reducers.size()).addHashMap(this.hashM.get(i));
+        }
+	}
+	
+	private void startReducer(){
+        for(Reduce reducer : this.reducers){
+        	reducer.start();
+        }
+	}
+	
+	private void resetReducers(){
+        for(Reduce reducer : this.reducers){
+            reducer.etat("reinitialisé");
+            reducer.resetHashMaps();
+            reducer.resetReducer();
+        }
+    }
 	
 	public ArrayList<ArrayList<HashMap<String, Integer>>> launch() {
 		ArrayList<ArrayList<HashMap<String, Integer>>> mapResult =new ArrayList<ArrayList<HashMap<String, Integer>>>();
@@ -79,5 +96,6 @@ public class Partitioner extends Thread{
 		resetMapper();
 		return mapResult;
 	}
+
 	
 }

@@ -1,7 +1,9 @@
 # MapReduce-Counter
-Implementation of a version of Map-Reduce in Java
+## Context
+MapReduce is a processing algorithm for distributed computing based on Java. 
+### Map
+The Map task takes a set of data and converts it into another set of data, where individual elements are broken into tuples (key/value pairs).
 
-## Milestones
-- 27/10
-- 10/11
-- 26/11
+### Reduce
+The Reduce task takes the output from Map as an input and combines those data tuples into a smaller set of tuples.
+## Technologies 

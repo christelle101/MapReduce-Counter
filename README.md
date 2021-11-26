@@ -6,4 +6,12 @@ The Map task takes a set of data and converts it into another set of data, where
 
 ### Reduce
 The Reduce task takes the output from Map as an input and combines those data tuples into a smaller set of tuples.
-## Technologies 
+## Made with
+- [Eclipse](https://www.eclipse.org/)
+- [Java](https://www.java.com/fr/)
+- Multithreading 
+- Parallelism
+
+## How to use the project 
+
+## Results to be provided 

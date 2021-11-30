@@ -1,5 +1,3 @@
-package proj731;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,8 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Divider {
-	// divides the text of the fName file into a number of chunks specified in the
-	// argument
+	/*
+	 * divides the text of the fName file into a number of chunks specified in the
+	 * argument
+	 */
 
 	private String fName;
 	private int nb_parties;
